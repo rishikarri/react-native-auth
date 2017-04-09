@@ -1,7 +1,6 @@
 import React from 'react';
 import { Text, TouchableOpacity } from 'react-native'; 
-
-
+// Button that can be reused - contains styling and renders children 
 
 const Button = ({whenPressed, children}) => {
 
