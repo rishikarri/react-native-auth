@@ -3,7 +3,7 @@ import { TextInput, View, Text } from 'react-native';
 
 
 // reusable input component
-const Input = ({ label, value, onChangeText }) => {
+const Input = ({ label, value, onChangeText, placeholder, secureTextEntryStatus }) => {
 
 	const { inputStyle, labelStyle, containerStyle } = styles; 
 	return (
@@ -11,6 +11,9 @@ const Input = ({ label, value, onChangeText }) => {
 			<Text style={labelStyle}> {label} </Text>
 			
 			<TextInput
+				secureTextEntry={secureTextEntryStatus}
+				autoCorrect={false}
+				placeholder={placeholder}
 				value={value}
 				onChangeText={onChangeText}
 				style={inputStyle}>
