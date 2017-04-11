@@ -21,7 +21,7 @@ const Input = ({ label, value, onChangeText }) => {
 
 const styles = {
 	inputStyle: {
-		color: '#000',
+		color: '#000', 
 		paddingRight: 5, 
 		paddingLeft: 5, 
 		fontSize: 18, 
@@ -32,13 +32,12 @@ const styles = {
 		fontSize: 18, 
 		paddingLeft: 20, 
 		flex: 1
-
 	},
-	continerStyle: {
+	containerStyle: {
 		height: 40, 
 		flex: 1, 
 		flexDirection: 'row',
-		align: 'center'
+		alignItems: 'center'
 	}
 }
 
