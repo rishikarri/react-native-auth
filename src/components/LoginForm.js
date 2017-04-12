@@ -3,11 +3,24 @@ import { Button, Card, CardSection, Input } from './common/index.js';
 import firebase from 'firebase';
 
 class LoginForm extends Component {
-	state = { email: '', password: '' };
+	state = { email: '', password: '', error: '' };
 
 	onButtonPress(){
 		const { email, password } = this.state;
-		firebase.auth().signInWithEmailAndPassword( email, password );
+		// attempt to sign user in 
+		firebase.auth().signInWithEmailAndPassword( email, password )
+			.catch(() =>{
+				// if we get an error, we enter this function
+				// we should attempt to create a user account 
+				firebase.auth().createUserWithEmailAndPassword(email, password);
+					.catch(() => {
+						// need to show the user that there is an error because they haven't been able to sign in 
+						this.setState({
+							error: 'Authentication failed'
+						})
+					})
+
+			});
 	}
 
 	render() {
