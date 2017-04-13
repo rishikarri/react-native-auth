@@ -2,16 +2,17 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 import { Text } from 'react-native';
 
-import { Button, Card, CardSection, Input } from './common/index.js';
+import { Button, Card, CardSection, Input, Spinner } from './common/index.js';
 
 
 class LoginForm extends Component {
-	state = { email: '', password: '', error: 'ds' };
+	state = { email: '', password: '', error: 'ds', loading: false };
 	
 
 	onButtonPress() {
+
 		console.log('this button is lit');
-		this.setState({ error: ''})
+		this.setState({ error: '', loading: true});
 		
 		const { email, password } = this.state;
 		// attempt to sign user in 
@@ -26,6 +27,16 @@ class LoginForm extends Component {
 						this.setState({ error: 'Authentication failed' });
 					});
 			});
+	}
+
+	renderButton() {
+		if (this.state.loading) {
+			return <Spinner sizeOfSpinner="small" />;
+		} 
+
+			return (
+				<Button whenPressed={this.onButtonPress.bind(this)}> Login </Button>
+			);	
 	}
 
 	render() {
@@ -60,7 +71,7 @@ class LoginForm extends Component {
 
 
 				<CardSection >
-					<Button whenPressed={this.onButtonPress.bind(this)}> Login </Button>
+					{this.renderButton()}
 				</CardSection >
 			</Card>
 		);
