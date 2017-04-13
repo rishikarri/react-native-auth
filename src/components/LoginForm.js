@@ -29,14 +29,14 @@ class LoginForm extends Component {
 			});
 	}
 
-	renderButton() {
+	renderButton() {		
 		if (this.state.loading) {
 			return <Spinner sizeOfSpinner="small" />;
 		} 
 
-			return (
-				<Button whenPressed={this.onButtonPress.bind(this)}> Login </Button>
-			);	
+		return (
+			<Button whenPressed={this.onButtonPress.bind(this)}> Login </Button>
+		);	
 	}
 
 	render() {
@@ -70,9 +70,9 @@ class LoginForm extends Component {
 				</Text>
 
 
-				<CardSection >
+				<CardSection>
 					{this.renderButton()}
-				</CardSection >
+				</CardSection>
 			</Card>
 		);
 	}
