@@ -9,7 +9,8 @@ import LoginForm from './components/LoginForm.js'
 
 class App extends Component {
 
-	state = { loggedIn: false }
+	// Login of null makes it so we don't know if we're logged in or not
+	state = { loggedIn: null }
 
 	componentWillMount() {
 		firebase.initializeApp({
@@ -46,15 +47,29 @@ class App extends Component {
 
 		return <LoginForm />
 	}
+	
 	render(){
 		return (
 			<View>
 				<Header headerText='Authentication' />
-				{this.renderContent()}
+
+				<View style={styles.marginAbove}>
+					{this.renderContent()}
+				</View>
 			</View>
 		)
 	}
 
 }
+
+const styles = {
+		marginAbove: {
+			marginTop: 40,
+			paddingTop: 40,
+			borderColor: 'red',
+			borderWidth: .5,
+			borderRadius: 4
+		}			
+	};
 
 export default App; 
