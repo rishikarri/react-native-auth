@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import firebase from 'firebase';
 
 import { View, Text } from 'react-native';
-import { Header, Button } from './components/common/index.js';
+import { Header, Button, Spinner } from './components/common/index.js';
 import LoginForm from './components/LoginForm.js'
 
 
@@ -37,25 +37,27 @@ class App extends Component {
 	}
 
 	renderContent() {
-		if (this.state.loggedIn) {
-			return (
-				<Button>
-					Log Out
-				</Button>
-			)
-		}
 
-		return <LoginForm />
+		switch (this.state.loggedIn){
+			case true: 
+				return (
+					<Button whenPressed={ () => firebase.auth().signOut()}>
+						Log Out
+					</Button>
+				)
+			case false:
+				return <LoginForm />
+			default:
+				return <Spinner sizeOfSpinner="large"></Spinner>		
+		}
 	}
 	
 	render(){
 		return (
 			<View>
-				<Header headerText='Authentication' />
-
-				<View style={styles.marginAbove}>
-					{this.renderContent()}
-				</View>
+				<Header headerText='Authentication' />				
+				{this.renderContent()}
+				
 			</View>
 		)
 	}
